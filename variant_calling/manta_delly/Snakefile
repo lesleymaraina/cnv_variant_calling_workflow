@@ -1,0 +1,78 @@
+
+configfile: "envs/config.yaml"
+sampleID = config["sample_ids"]
+
+rule all:
+    input:
+        expand( "[path]/{sample}/variants/manta/results/variants/candidateSV.vcf.gz", sample=sampleID)
+
+
+############################
+# Variant Discovery
+############################
+rule delly:
+    input:
+        ref = config['ref'],
+        exclude = config['delly_exclude'],
+        bam_germl = "[path]/{sample}.WholeGenome.bam",
+        bam_germl_ind = "[path]/germline/WGS/bam/{sample}.WholeGenome.bam.bai"
+    threads: 16
+    output:
+       "[path]/germline/WGS/workding_dir/delly/output/{sample}_delly_{vartype}.bcf"
+    conda:
+        "[path]/germline/WGS/workding_dir/delly/envs/variant.yaml"
+    shell:
+        "delly call -t {wildcards.vartype} "
+        "-x {input.exclude} "
+        "-g {input.ref} "
+        "{input.bam_germl} -o {output}"
+
+rule bcf_vcf:
+    input:
+        "[path]/germline/WGS/workding_dir/delly/output/{sample}_delly_{vartype}.bcf"
+    output:
+        "[path]/{sample}_delly_{vartype}.vcf"
+    conda:
+        "envs/variant.yaml"
+    threads: 16 
+    shell:
+        "bcftools view --threads {threads} {input} > {output}"
+
+
+rule manta:
+    input:
+        ref = config['ref'],
+        bam_germl = "[path]/germline/bam/{sample}.WholeGenome.bam",
+        bam_germl_ind = "[path]/germline/bam/{sample}.WholeGenome.bam.bai"
+
+    output:
+        "[path]/manta/output/{sample}/variants/manta/results/variants/candidateSV.vcf.gz"
+    log:
+        "[path]/manta/output/{sample}/variants/manta/{sample}_manta.vcf.log"
+    conda: "envs/variant.yaml"
+    threads: 20
+    shell:
+        "rm -rf [path]/manta/output/{wildcards.sample}/variants/manta/* "
+        "&& configManta.py --bam {input.bam_germl} "
+        "--reference {input.ref} "
+        "--runDir [path]/germline/EBV_calls/manta/output/{wildcards.sample}/variants/manta/ "
+        "&& [path]/germline/EBV_calls/manta/output/{wildcards.sample}/variants/manta/runWorkflow.py -j 8 > {log}"
+        
+
+##############################################
+# Structural Variant Post Processing
+##############################################
+rule gzip_vcf:
+    input:
+        {prefix}.vcf
+    output:
+        {prefix}.vcf.gz
+    conda:
+        "envs/variant.yaml"
+    shell:
+        "bgzip -c {wildcards}.vcf > {wildcards}.vcf.gz "
+        "&&tabix -p vcf {wildcards}.vcf.gz"
+
+
+
+
