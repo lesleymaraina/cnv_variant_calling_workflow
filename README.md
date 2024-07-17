@@ -1,2 +1,2 @@
 # Snakemake workflow: CNV variant calling, merging, and annotation
-![CNVnator]([path or URL to image](https://anaconda.org/bioconda/cnvnator))
+![Micro.blog](https://img.shields.io/badge/Micro.blog-FF8800?style=for-the-badge&logo=micro.blog&logoColor=white)
