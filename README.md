@@ -23,6 +23,7 @@ Annotated CNV vcfs can be generated using running scripts as follows:
 
 ### Generate CNV vcfs
 
+#### CNVnator
 #### ./variant_calling/cnvnator
 Update run_CNVnator.config file path to bam files
 
