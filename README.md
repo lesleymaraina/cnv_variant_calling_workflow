@@ -9,3 +9,5 @@
 ![nirvana](https://badgen.net/badge/nirvana/v3.18.1/green)
 ![ANNOTSV](https://badgen.net/badge/ANNOTSV/v3.3.7/green)
 
+
+This repository contains workflows for generating copy number variant (CNV) variant calls for three callers: manta, delly, and CNVnator. The workflow is designed to handle germline whole genome sequencing data. 
