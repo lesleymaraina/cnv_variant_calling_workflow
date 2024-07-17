@@ -23,13 +23,48 @@ Annotated CNV vcfs can be generated using running scripts as follows:
 
 ### Generate CNV vcfs
 
-#### CNVnator
+#### CNVnator Calls
 #### ./variant_calling/cnvnator
 Update run_CNVnator.config file path to bam files
 
 ```
 sh run_CNVnator.sh
 ```
+#### Manta and Delly Calls
+#### ./variant_calling/manta_delly
+Update sampleIDs in ./envs/config.yaml
+
+```
+sh launch.sh
+```
+
+#### Merge vcfs with SURVIVOR
+Update file paths in ./vcf_merge/run_survivor_per_sample.config
+
+```
+sh run_survivor_per_sample.sh
+```
+
+#### Generate joint variant calls
+Update ./joint_calling/svtyper_script.sh to include full file paths of all bam files and merged vcf
+
+```
+sh run_survivor_per_sample.sh
+```
+
+#### Annotate merged vcf
+Generate nirvana annotations
+```
+sh pt1_run_nirvana.sh
+```
+
+Generate annotSV annotations
+```
+sh run_annotSV.sh
+```
+
+
+
 
 
 
