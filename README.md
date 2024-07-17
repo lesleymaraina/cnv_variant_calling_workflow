@@ -11,3 +11,12 @@
 
 -----
 Repository contains workflows for generating (1) copy number variant (CNV) variant calls for three structural variant callers [manta, delly, CNVnator], (2) merged [SURVIVOR] joint calls [SVtyper], and (3) annotated vcfs [annotSV, nirvana]. The workflow is designed to handle germline whole genome sequencing data. 
+
+-----
+
+##Requirements
+This workflow was test on macOS Sonoma (v14.5) and the Linus OS (NIH Biowulf). The workflow expexts singularity to be installed. 
+
+-----
+
+##Overview
