@@ -1,4 +1,4 @@
-# Snakemake workflow: CNV variant calling, merging, and annotation
+# Snakemake workflow: copy number variant (CNV) variant calling, merging, and annotation
 ![cnvnator](https://badgen.net/badge/cnvnator/MIT%20liscense/green) 
 ![manta](https://badgen.net/badge/manta/MIT%20liscense/green)
 ![delly](https://badgen.net/badge/delly/MIT%20liscense/green)
