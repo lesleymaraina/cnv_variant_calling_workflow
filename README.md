@@ -21,6 +21,8 @@ This workflow was test on macOS Sonoma (v14.5) and the Linus OS (NIH Biowulf). T
 ## Overview
 Annotated CNV vcfs can be generated using running scripts as follows:
 
+### Generate CNV vcfs
+
 #### ./variant_calling/cnvnator
 Update run_CNVnator.config file path to bam files
 
