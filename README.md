@@ -1,2 +1,3 @@
 # Snakemake workflow: CNV variant calling, merging, and annotation
-![CNVnator](https://badgen.net/#badge/cnvnator/MIT%20liscense/green)
+!\[my badge\](https://badgen.net/badge/hello/world/red?icon=twitter)
+
