@@ -15,7 +15,7 @@ Repository contains workflows for generating (1) copy number variant (CNV) varia
 
 
 ## Requirements
-This workflow was test on macOS Sonoma (v14.5) and the Linus OS (NIH Biowulf). The workflow expexts singularity to be installed. 
+This workflow was test on macOS Sonoma (v14.5) and the Linux OS (NIH Biowulf). The workflow expexts singularity to be installed. 
 
 
 ## Overview
